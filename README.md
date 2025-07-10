@@ -76,7 +76,7 @@ This application demonstrates core backend skills, dynamic templating, and clien
 - [ ] Switch from SQLite to PostgreSQL (optional for production)
 
 ---
-## 🙏 Credits
+##  Credits
 
 This project was developed as part of the **Civora Nexus Full Stack Project**. Special thanks to mentors and peers who supported this initiative.
 
@@ -85,7 +85,7 @@ This project was developed as part of the **Civora Nexus Full Stack Project**. S
 Feel free to reach out with questions, suggestions, or collaboration ideas!
 
 📧 Email: janhavi.dubey2025@gmail.com  
-🔗 LinkedIn: [linkedin.com/in/yourname](https://www.linkedin.com/in/yourname)
+🔗 LinkedIn: [https://www.linkedin.com/in/janhavi-dubey-3a3365362/)
 
 
 
