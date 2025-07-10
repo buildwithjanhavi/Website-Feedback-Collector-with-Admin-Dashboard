@@ -41,25 +41,8 @@ A full-stack web application to collect, manage, and analyze website user feedba
 - 📊 Admin dashboard with real-time updates
 - 🔍 Filtering options *(planned)*
 - 🟢 Mark-as-resolved status *(coming soon)*
-
 ---
 
-## 📁 Project Structure
-civora-nexus-feedback/
-├── app.py                 # Main Flask application
-├── database.py            # Creates the SQLite database and table
-├── feedback.db            # SQLite database (generated after running database.py)
-├── requirements.txt       # Python package dependencies (Flask, etc.)
-├── Procfile               # Render deployment start command
-├── runtime.txt            # Python version for Render deployment
-├── static/
-│   └── style.css          # Dark mode styling for UI
-└── templates/
-    ├── index.html         # Feedback submission form
-    └── admin.html         # Admin dashboard (displays feedbacks)
-
-
----
 
 ## 🧩 Expected Deliverables
 
