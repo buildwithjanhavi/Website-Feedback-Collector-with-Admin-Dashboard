@@ -3,7 +3,7 @@ from auth import auth
 import sqlite3
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Change to a strong key for production
+app.secret_key = 'your_secret_key'  # Use a strong random key in production
 
 app.register_blueprint(auth)
 
@@ -15,13 +15,13 @@ def get_db_connection():
 @app.route('/')
 def index():
     if 'user_id' not in session:
-        return redirect(url_for('auth.login'))
+        return redirect('/login')
     return render_template('index.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():
     if 'user_id' not in session:
-        return redirect(url_for('auth.login'))
+        return redirect('/login')
 
     name = session['username']
     feedback = request.form['feedback']
@@ -32,12 +32,12 @@ def submit():
     conn.commit()
     conn.close()
     flash('Feedback submitted!', 'success')
-    return redirect(url_for('index'))
+    return redirect('/')
 
 @app.route('/feedbacks')
 def feedback_dashboard():
     if 'user_id' not in session:
-        return redirect(url_for('auth.login'))
+        return redirect('/login')
 
     conn = get_db_connection()
     username = session['username']
@@ -48,11 +48,11 @@ def feedback_dashboard():
 @app.route('/admin')
 def admin_dashboard():
     if 'user_id' not in session:
-        return redirect(url_for('auth.login'))
+        return redirect('/login')
 
     if session['username'].lower() != 'admin':
         flash("Access denied. Admins only.", "danger")
-        return redirect(url_for('index'))
+        return redirect('/')
 
     search = request.args.get('search')
     conn = get_db_connection()
