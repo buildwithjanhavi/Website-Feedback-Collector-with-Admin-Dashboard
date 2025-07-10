@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Feedback Dashboard</h2>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Comment</th>
+            <th>Sentiment</th>
+        </tr>
+        {% for feedback in feedbacks %}
+        <tr>
+            <td>{{ feedback[1] }}</td>
+            <td>{{ feedback[2] }}</td>
+            <td>{{ feedback[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

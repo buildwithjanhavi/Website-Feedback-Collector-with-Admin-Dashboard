@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Website Feedback</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Feedback Form</h2>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Your Name" required><br>
+        <textarea name="comment" placeholder="Your Feedback" required></textarea><br>
+        <select name="sentiment">
+            <option value="positive">Positive</option>
+            <option value="neutral">Neutral</option>
+            <option value="negative">Negative</option>
+        </select><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
