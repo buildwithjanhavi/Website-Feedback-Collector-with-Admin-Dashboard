@@ -59,12 +59,12 @@ This application demonstrates core backend skills, dynamic templating, and clien
 
 ---
 
-## 🖼️ Screenshots *(Optional)*
-
-> You can add screenshots like:
+## 🖼️ Screenshots 
 - Homepage with feedback form
+  https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard-/blob/main/assests-1/feedback%20form.
+  
 - Admin dashboard view
-- Example feedback submissions with tags
+https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard-/blob/main/assests-1/admin%20.png
 
 ---
 ## 🔮 Future Improvements
