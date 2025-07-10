@@ -43,12 +43,14 @@ def register():
             conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
             conn.commit()
 
+            # fetch the newly created user
             user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
             conn.close()
 
             session['user_id'] = user['id']
             session['username'] = user['username']
 
+            # ✅ Redirect immediately after registration
             if username.lower() == 'admin':
                 return redirect('/admin')
             else:
@@ -65,3 +67,4 @@ def logout():
     session.clear()
     flash('Logged out successfully.', 'info')
     return redirect('/login')
+
