@@ -85,7 +85,7 @@ This project was developed as part of the **Civora Nexus Full Stack Project**. S
 Feel free to reach out with questions, suggestions, or collaboration ideas!
 
 📧 Email: janhavi.dubey2025@gmail.com  
-🔗 LinkedIn: [https://www.linkedin.com/in/janhavi-dubey-3a3365362/)
+🔗 LinkedIn: https://www.linkedin.com/in/janhavi-dubey-3a3365362/
 
 
 
