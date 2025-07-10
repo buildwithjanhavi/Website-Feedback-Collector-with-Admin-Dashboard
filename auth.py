@@ -21,7 +21,12 @@ def login():
             session['user_id'] = user['id']
             session['username'] = user['username']
             flash('Login successful!', 'success')
-            return redirect(url_for('index'))
+
+            # Redirect to proper dashboard
+            if username.lower() == 'admin':
+                return redirect(url_for('admin_dashboard'))
+            else:
+                return redirect(url_for('feedback_dashboard'))
         else:
             flash('Invalid credentials', 'danger')
     return render_template('login.html')
@@ -31,12 +36,29 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = generate_password_hash(request.form['password'])
+
         conn = get_db_connection()
-        conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
-        conn.commit()
-        conn.close()
-        flash('Account created! You can now log in.', 'success')
-        return redirect(url_for('auth.login'))
+        try:
+            conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
+            conn.commit()
+
+            # Auto-login after register
+            user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+            conn.close()
+
+            session['user_id'] = user['id']
+            session['username'] = user['username']
+
+            # Redirect to dashboard
+            if username.lower() == 'admin':
+                return redirect(url_for('admin_dashboard'))
+            else:
+                return redirect(url_for('feedback_dashboard'))
+
+        except sqlite3.IntegrityError:
+            flash('Username already exists!', 'danger')
+            conn.close()
+
     return render_template('register.html')
 
 @auth.route('/logout')
