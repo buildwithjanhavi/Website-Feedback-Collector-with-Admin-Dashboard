@@ -60,12 +60,12 @@ This application demonstrates core backend skills, dynamic templating, and clien
 ---
 
 ## 🖼️ Screenshots 
-- Homepage with feedback form
-  https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard-/blob/main/assests-1/feedback%20form.
+### Homepage with feedback form
+  ![Feedback Page](https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard-/blob/main/assests-1/admin%20.png)
   
-- Admin dashboard view
-https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard-/blob/main/assests-1/admin%20.png
+### Admin dashboard view
 
+![Admin Feedback Dashboard](https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard-/blob/main/assests-1/admin%20.png)
 ---
 ## 🔮 Future Improvements
 
