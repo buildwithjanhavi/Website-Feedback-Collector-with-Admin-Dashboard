@@ -1,6 +1,6 @@
 # 🌐 Civora Nexus – Website Feedback Collector with Admin Dashboard
 
-> 🚀 **This project is Part 1 of the Full Stack Web Development Internship under SECT and Civora Nexus.**
+> 🚀 **This project is Part 1 of the Full Stack Web Development Internship under SECT Summer Internship Program 1.0 — 2025 and Civora Nexus.**
 
 The **Website Feedback Collector with Admin Dashboard** is a full-stack web application built using **Flask**, **Vanilla JavaScript**, and **SQLite**. It allows website users to submit feedback, which is stored in a database and displayed in real-time on an admin dashboard. The project includes basic sentiment tagging based on keyword analysis and is deployed live using Render.
 
