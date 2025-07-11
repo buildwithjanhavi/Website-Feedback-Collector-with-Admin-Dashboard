@@ -4,9 +4,9 @@ from database import get_feedbacks, save_feedback
 import os
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY", "secret-key")
+app.secret_key = os.getenv("SECRET_KEY", "supersecretkey")
 
-# Register blueprint for auth routes
+# Register authentication blueprint
 app.register_blueprint(auth_bp)
 
 @app.route('/')
@@ -33,6 +33,7 @@ def submit_feedback():
     user = session['username']
     content = request.form['content']
     save_feedback(user, content)
+    flash("Feedback submitted successfully!")
     return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
