@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>User Dashboard</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="admin-container">
-    <header class="admin-header">
-      <h1>👋 Hello, {{ username }}</h1>
-      <p>Submit your valuable feedback below</p>
-    </header>
+  <div class="container">
+    <h2 class="glow">Welcome, {{ session['username'] }}</h2>
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}
-        <div class="flash">
-          {% for message in messages %}
-            {{ message }}
-          {% endfor %}
-        </div>
+        <div class="flash">{{ messages[0] }}</div>
       {% endif %}
     {% endwith %}
 
-    <section class="feedback-section">
-      <form method="POST" action="/submit-feedback" class="feedback-card">
-        <textarea name="content" placeholder="💬 Write your feedback here..." rows="5" required></textarea>
-        <button type="submit" class="btn">Submit Feedback</button>
-      </form>
-    </section>
+    <form action="/submit-feedback" method="POST" class="feedback-card">
+      <label for="content">💬 Your Feedback</label>
+      <input type="text" name="content" placeholder="Share your thoughts..." required>
 
-    <footer class="logout-footer">
-      <a href="{{ url_for('auth.logout') }}" class="btn logout-btn">🚪 Logout</a>
-    </footer>
+      <label for="rating">⭐ Rate the App</label>
+      <select name="rating" required>
+        <option value="" disabled selected>Choose a rating</option>
+        <option value="1">⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+      </select>
+
+      <button type="submit" class="btn">🚀 Submit Feedback</button>
+    </form>
+
+    <div class="logout-footer">
+      <a href="{{ url_for('auth.logout') }}" class="logout-btn">🔓 Logout</a>
+    </div>
   </div>
 </body>
 </html>
