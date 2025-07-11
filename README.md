@@ -22,8 +22,8 @@ This application demonstrates core backend skills, dynamic templating, and clien
 
 ## 🚀 Live Demo
 
-🔗 [Feedback Form](https://website-feedback-1.onrender.com)  
-🔒 [Admin Dashboard](https://website-feedback-1.onrender.com/admin)
+🔗 [Feedback Form](https://website-feedback-collector-2-78z6.onrender.com)  
+🔒 [Admin Dashboard](https://website-feedback-collector-2-78z6.onrender.com)
 
 > Submit feedback on the home page and view it instantly in the admin panel.
 
