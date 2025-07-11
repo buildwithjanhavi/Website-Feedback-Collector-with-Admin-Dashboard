@@ -14,21 +14,19 @@ def register():
         username = request.form['username']
         password = request.form['password']
 
-        if len(password) < 4:
-            flash("Password must be at least 4 characters.")
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM users WHERE username = ?', (username,))
+        existing = cursor.fetchone()
+
+        if existing:
+            flash('Username already exists.')
             return redirect(url_for('auth.register'))
 
-        with get_db_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute('SELECT * FROM users WHERE username = ?', (username,))
-            if cursor.fetchone():
-                flash("Username already exists.")
-                return redirect(url_for('auth.register'))
-
-            cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
-            conn.commit()
-
-        flash("Registered successfully. Please login.")
+        cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
+        conn.commit()
+        conn.close()
+        flash('Registered successfully! Please login.')
         return redirect(url_for('auth.login'))
 
     return render_template('register.html')
@@ -39,17 +37,15 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        with get_db_connection() as conn:
-            user = conn.execute(
-                'SELECT * FROM users WHERE username = ? AND password = ?',
-                (username, password)
-            ).fetchone()
+        conn = get_db_connection()
+        user = conn.execute('SELECT * FROM users WHERE username = ? AND password = ?', (username, password)).fetchone()
+        conn.close()
 
         if user:
             session['username'] = username
             return redirect(url_for('dashboard'))
         else:
-            flash("Invalid username or password.")
+            flash('Invalid credentials.')
             return redirect(url_for('auth.login'))
 
     return render_template('login.html')
@@ -57,5 +53,4 @@ def login():
 @auth_bp.route('/logout')
 def logout():
     session.pop('username', None)
-    flash("You have been logged out.")
     return redirect(url_for('auth.login'))
