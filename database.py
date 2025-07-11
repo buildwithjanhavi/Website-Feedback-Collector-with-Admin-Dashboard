@@ -28,7 +28,13 @@ def get_feedbacks():
     conn.close()
     return feedbacks
 
-init_db()
+def save_feedback(user, content):
+    conn = sqlite3.connect('feedback.db')
+    c = conn.cursor()
+    c.execute('INSERT INTO feedback (user, content) VALUES (?, ?)', (user, content))
+    conn.commit()
+    conn.close()
 
+init_db()
 
 
