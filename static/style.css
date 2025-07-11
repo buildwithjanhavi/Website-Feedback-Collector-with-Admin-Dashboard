@@ -1,4 +1,4 @@
-/* === General Styles === */
+/* === General Layout === */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #121212;
@@ -86,37 +86,19 @@ a {
   font-size: 0.95rem;
 }
 
-/* === Dashboard, Feedback, Search === */
+/* === Dashboard, Feedback, Forms === */
 .container,
 .admin-container {
   max-width: 800px;
   margin: auto;
 }
-.admin-header h1 {
-  font-size: 2rem;
-  color: #03dac6;
-}
-.admin-header p {
-  color: #ccc;
-}
-.search-section input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  background: #2d2d2d;
-  color: #fff;
-  margin: 20px 0;
-}
-.feedback-section {
-  margin-top: 30px;
-}
-.feedback-card {
+.feedback-card,
+.chart-card {
   background: #1e1e1e;
-  padding: 15px;
+  padding: 20px;
   border-radius: 12px;
-  margin-bottom: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 .feedback-card textarea {
   width: 100%;
@@ -126,6 +108,15 @@ a {
   color: #fff;
   border: none;
   resize: none;
+  margin-bottom: 10px;
+}
+.feedback-card select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  background: #2d2d2d;
+  color: #fff;
+  border: none;
   margin-bottom: 10px;
 }
 .feedback-card .btn {
@@ -167,9 +158,12 @@ a {
   text-align: center;
 }
 
-/* === Chart Section === */
+/* === Chart Section (Smaller Pie) === */
 .chart-section {
   margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .chart-card {
   background: #1e1e1e;
@@ -177,7 +171,7 @@ a {
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
   text-align: center;
-  max-width: 400px;
+  max-width: 250px;
   margin: 0 auto;
 }
 .chart-card h3 {
@@ -186,8 +180,8 @@ a {
   font-size: 1.2rem;
 }
 .chart-section canvas {
-  max-width: 100%;
-  height: auto;
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 /* === Logout Footer === */
