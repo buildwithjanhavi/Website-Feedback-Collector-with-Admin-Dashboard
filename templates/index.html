@@ -2,19 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Website Feedback Collector</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="hero">
-    <h1>Smart Feedback Collection</h1>
-    <p>Collect & analyze user feedback with style, speed, and simplicity.</p>
+  <section class="hero">
+    <h1>🚀 Website Feedback Collector</h1>
+    <p>Collect, analyze, and manage user feedback with AI sentiment insights</p>
     <div class="hero-buttons">
-      <a href="{{ url_for('auth.login') }}" class="btn">Login</a>
-      <a href="{{ url_for('auth.register') }}" class="btn">Register</a>
+      <a href="{{ url_for('auth.login') }}" class="btn">🔐 Login</a>
+      <a href="{{ url_for('auth.register') }}" class="btn">📝 Register</a>
     </div>
-  </div>
+  </section>
+
+  <section class="features">
+    <h2>✨ Why This App Stands Out</h2>
+    <div class="feature-cards">
+      <div class="feature-card">
+        <h3>💡 Smart Feedback</h3>
+        <p>AI-powered sentiment analysis for better insights.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🛠 Admin Control</h3>
+        <p>Manage feedback easily with search & charts.</p>
+      </div>
+      <div class="feature-card">
+        <h3>📱 Fully Responsive</h3>
+        <p>Works beautifully on mobile, tablet & desktop.</p>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
