@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Welcome</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Website Feedback Collector</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h2>Welcome to the Website Feedback Collector</h2>
-    <a href="{{ url_for('auth.login') }}" class="btn">Login</a>
-    <a href="{{ url_for('auth.register') }}" class="btn">Register</a>
+  <div class="hero">
+    <h1>Smart Feedback Collection</h1>
+    <p>Collect & analyze user feedback with style, speed, and simplicity.</p>
+    <div class="hero-buttons">
+      <a href="{{ url_for('auth.login') }}" class="btn">Login</a>
+      <a href="{{ url_for('auth.register') }}" class="btn">Register</a>
+    </div>
   </div>
 </body>
 </html>
