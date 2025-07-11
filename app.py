@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, session, request
+from flask import Flask, render_template, redirect, url_for, session, request, flash
 from auth import auth_bp
 from database import get_feedbacks, save_feedback
 import os
@@ -32,10 +32,14 @@ def submit_feedback():
 
     user = session['username']
     content = request.form['content']
-    save_feedback(user, content)
-    flash("Feedback submitted successfully!")
+
+    try:
+        save_feedback(user, content)
+        flash("✅ Thank you for submitting the feedback!")
+    except Exception as e:
+        print("Feedback save error:", e)
+        flash("❌ An error occurred while saving feedback.")
     return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
     app.run(debug=True)
-
