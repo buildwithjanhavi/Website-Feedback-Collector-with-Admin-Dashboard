@@ -11,6 +11,16 @@
     <p>Welcome, <strong>{{ username }}</strong></p>
     <a href="{{ url_for('auth.logout') }}" class="btn">Logout</a>
 
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
     <h3>Submit Your Feedback</h3>
     <form method="POST" action="/submit-feedback">
       <textarea name="content" placeholder="Write your feedback..." required></textarea>
