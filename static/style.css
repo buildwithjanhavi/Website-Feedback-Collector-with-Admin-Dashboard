@@ -1,124 +1,84 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* General Layout */
 body {
+  font-family: 'Poppins', sans-serif;
   background-color: #121212;
   color: #f1f1f1;
-  font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
+  margin: 0;
   padding: 20px;
 }
 
-/* Hero Page */
-.hero {
-  text-align: center;
-  padding: 100px 20px;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
+/* Header */
+.admin-header h1 {
+  font-size: 2.2rem;
   color: #03dac6;
-  margin-bottom: 10px;
+}
+.admin-header p {
+  margin-top: 5px;
+  font-size: 1.1rem;
+  color: #ccc;
 }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-}
-
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-/* Container */
-.container {
-  max-width: 500px;
-  margin: auto;
-  background: #1e1e1e;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-  text-align: center;
-}
-
-/* Form Inputs */
-input[type="text"], input[type="password"], textarea {
+/* Search */
+.search-section input {
   width: 100%;
   padding: 12px;
   border-radius: 8px;
+  border: none;
   background: #2d2d2d;
   color: #fff;
+  margin: 20px 0;
+}
+
+/* Feedback Cards */
+.feedback-card {
+  background: #1e1e1e;
+  padding: 15px;
+  border-radius: 12px;
   margin-bottom: 15px;
-  border: none;
-  font-size: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-input:focus, textarea:focus {
-  outline: none;
-  background: #3a3a3a;
-}
-
-/* Buttons */
-.btn, button {
-  background: #03dac6;
-  color: #000;
-  border: none;
-  padding: 12px;
-  border-radius: 8px;
-  width: 100%;
+/* Sentiment Badges */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
   font-weight: bold;
-  cursor: pointer;
-  font-size: 15px;
+  display: inline-block;
   margin-top: 10px;
-  transition: 0.3s;
+}
+.positive { background-color: #4caf50; color: #fff; }
+.neutral  { background-color: #ffeb3b; color: #000; }
+.negative { background-color: #f44336; color: #fff; }
+
+/* Chart */
+.chart-section {
+  margin-top: 40px;
 }
 
-.btn:hover, button:hover {
+/* Logout Button */
+.logout-footer {
+  text-align: center;
+  margin-top: 40px;
+}
+.logout-btn {
+  background: #03dac6;
+  padding: 12px 30px;
+  border-radius: 30px;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+.logout-btn:hover {
   background: #018786;
 }
 
-/* Flash Messages */
-.flash {
-  background: #03dac6;
-  color: #000;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  font-weight: 500;
-}
-
-/* Feedback Cards (Admin) */
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-ul li {
-  background: #2c2c2c;
-  padding: 12px;
-  margin-bottom: 12px;
-  border-radius: 10px;
-  text-align: left;
-}
-
 /* Responsive */
-@media (max-width: 600px) {
-  .container {
-    padding: 20px;
+@media screen and (max-width: 600px) {
+  .admin-header h1 {
+    font-size: 1.6rem;
   }
-
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    gap: 10px;
+  .feedback-card {
+    padding: 12px;
   }
 }
