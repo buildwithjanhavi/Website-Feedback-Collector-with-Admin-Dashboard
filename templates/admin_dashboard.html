@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="container">
@@ -13,18 +14,50 @@
 
     <h3>All Feedback Submissions</h3>
 
-    {% if feedbacks %}
-      <ul>
-        {% for feedback in feedbacks %}
-          <li>
-            <strong>User:</strong> {{ feedback[1] }}<br>
-            <strong>Feedback:</strong> {{ feedback[2] }}
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>No feedbacks found.</p>
-    {% endif %}
+    <input type="text" id="search" placeholder="Search feedbacks..." onkeyup="searchFeedbacks()">
+
+    <ul id="feedback-list">
+      {% for feedback in feedbacks %}
+        <li>
+          <strong>User:</strong> {{ feedback[1] }}<br>
+          <strong>Feedback:</strong> {{ feedback[2] }}<br>
+          <strong>Sentiment:</strong>
+          {% if "good" in feedback[2]|lower %}
+            👍
+          {% elif "bad" in feedback[2]|lower %}
+            👎
+          {% else %}
+            😐
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <canvas id="feedbackChart" width="400" height="200"></canvas>
   </div>
+
+  <script>
+    function searchFeedbacks() {
+      let input = document.getElementById("search").value.toLowerCase();
+      let items = document.querySelectorAll("#feedback-list li");
+      items.forEach(li => {
+        li.style.display = li.innerText.toLowerCase().includes(input) ? "" : "none";
+      });
+    }
+
+    // Dummy chart for now
+    const ctx = document.getElementById('feedbackChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Positive', 'Neutral', 'Negative'],
+        datasets: [{
+          label: 'Sentiment',
+          data: [10, 5, 2],
+          backgroundColor: ['#4caf50', '#ffeb3b', '#f44336']
+        }]
+      }
+    });
+  </script>
 </body>
 </html>
