@@ -12,16 +12,18 @@
     <a href="{{ url_for('auth.logout') }}" class="btn">Logout</a>
 
     <h3>All Feedback Submissions</h3>
+
     {% if feedbacks %}
       <ul>
         {% for feedback in feedbacks %}
           <li>
-            <strong>{{ feedback[1] }}</strong>: {{ feedback[2] }}
+            <strong>User:</strong> {{ feedback[1] }}<br>
+            <strong>Feedback:</strong> {{ feedback[2] }}
           </li>
         {% endfor %}
       </ul>
     {% else %}
-      <p>No feedback available yet.</p>
+      <p>No feedbacks found.</p>
     {% endif %}
   </div>
 </body>
