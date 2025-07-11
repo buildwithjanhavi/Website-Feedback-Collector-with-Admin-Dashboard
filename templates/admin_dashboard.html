@@ -1,59 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h2>Admin Dashboard</h2>
-    <p>Welcome, <strong>{{ username }}</strong></p>
-    <a href="{{ url_for('auth.logout') }}" class="btn">Logout</a>
+  <div class="admin-container">
+    <header class="admin-header">
+      <h1>👩‍💼 Admin Dashboard</h1>
+      <p>Welcome, <strong>{{ username }}</strong></p>
+    </header>
 
-    <h3>All Feedback Submissions</h3>
+    <section class="search-section">
+      <input type="text" id="search" placeholder="🔍 Search feedback..." onkeyup="searchFeedbacks()">
+    </section>
 
-    <input type="text" id="search" placeholder="Search feedbacks..." onkeyup="searchFeedbacks()">
-
-    <ul id="feedback-list">
+    <section class="feedback-section" id="feedback-list">
       {% for feedback in feedbacks %}
-        <li>
-          <strong>User:</strong> {{ feedback[1] }}<br>
-          <strong>Feedback:</strong> {{ feedback[2] }}<br>
-          <strong>Sentiment:</strong>
-          {% if "good" in feedback[2]|lower %}
-            👍
-          {% elif "bad" in feedback[2]|lower %}
-            👎
-          {% else %}
-            😐
-          {% endif %}
-        </li>
+        <div class="feedback-card">
+          <p><strong>User:</strong> {{ feedback[1] }}</p>
+          <p><strong>Feedback:</strong> {{ feedback[2] }}</p>
+          <span class="badge 
+            {% if feedback[3] == 'Positive' %} positive 
+            {% elif feedback[3] == 'Negative' %} negative 
+            {% else %} neutral {% endif %}">
+            {{ feedback[3] }}
+          </span>
+        </div>
       {% endfor %}
-    </ul>
+    </section>
 
-    <canvas id="feedbackChart" width="400" height="200"></canvas>
+    <section class="chart-section">
+      <canvas id="feedbackChart" width="400" height="200"></canvas>
+    </section>
+
+    <footer class="logout-footer">
+      <a href="{{ url_for('auth.logout') }}" class="btn logout-btn">🚪 Logout</a>
+    </footer>
   </div>
 
   <script>
     function searchFeedbacks() {
       let input = document.getElementById("search").value.toLowerCase();
-      let items = document.querySelectorAll("#feedback-list li");
-      items.forEach(li => {
-        li.style.display = li.innerText.toLowerCase().includes(input) ? "" : "none";
+      let items = document.querySelectorAll(".feedback-card");
+      items.forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(input) ? "" : "none";
       });
     }
 
-    // Dummy chart for now
+    // Dummy chart (replace with real sentiment counts later)
     const ctx = document.getElementById('feedbackChart').getContext('2d');
     new Chart(ctx, {
-      type: 'pie',
+      type: 'doughnut',
       data: {
         labels: ['Positive', 'Neutral', 'Negative'],
         datasets: [{
-          label: 'Sentiment',
-          data: [10, 5, 2],
+          data: [12, 5, 3],
           backgroundColor: ['#4caf50', '#ffeb3b', '#f44336']
         }]
       }
