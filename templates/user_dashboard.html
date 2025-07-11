@@ -6,10 +6,11 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h2>User Dashboard</h2>
-    <p>Welcome, <strong>{{ username }}</strong></p>
-    <a href="{{ url_for('auth.logout') }}" class="btn">Logout</a>
+  <div class="admin-container">
+    <header class="admin-header">
+      <h1>👋 Hello, {{ username }}</h1>
+      <p>Submit your valuable feedback below</p>
+    </header>
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -21,11 +22,16 @@
       {% endif %}
     {% endwith %}
 
-    <h3>Submit Your Feedback</h3>
-    <form method="POST" action="/submit-feedback">
-      <textarea name="content" placeholder="Write your feedback..." required></textarea>
-      <button type="submit" class="btn">Submit Feedback</button>
-    </form>
+    <section class="feedback-section">
+      <form method="POST" action="/submit-feedback" class="feedback-card">
+        <textarea name="content" placeholder="💬 Write your feedback here..." rows="5" required></textarea>
+        <button type="submit" class="btn">Submit Feedback</button>
+      </form>
+    </section>
+
+    <footer class="logout-footer">
+      <a href="{{ url_for('auth.logout') }}" class="btn logout-btn">🚪 Logout</a>
+    </footer>
   </div>
 </body>
 </html>
