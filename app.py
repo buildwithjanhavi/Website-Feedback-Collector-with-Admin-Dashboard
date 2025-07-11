@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "supersecretkey")
 
-# Register authentication blueprint
+# Register auth blueprint
 app.register_blueprint(auth_bp)
 
 @app.route('/')
@@ -37,9 +37,10 @@ def submit_feedback():
         save_feedback(user, content)
         flash("✅ Thank you for submitting the feedback!")
     except Exception as e:
-        print("Feedback save error:", e)
-        flash("❌ An error occurred while saving feedback.")
+        print("Error saving feedback:", e)
+        flash("❌ An error occurred.")
     return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
     app.run(debug=True)
+
