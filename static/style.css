@@ -1,67 +1,153 @@
+/* Reset & Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #0e0e0e;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #1e1b2e, #766c91);
+    color: #ffffff;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    color: #fff;
-    margin: 0;
+    padding: 20px;
 }
 
-.admin-card {
-    background-color: #1c1c1c;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.7);
-    max-width: 850px;
-    width: 90%;
+/* Flash Message Styling */
+.flash {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 100%;
+    max-width: 400px;
     text-align: center;
-    animation: fadeIn 0.6s ease-in-out;
 }
 
-h2 {
-    color: #00f0ff;
-    margin-bottom: 25px;
+.flash.success {
+    background-color: #4caf50;
+    color: white;
 }
 
-.title-text {
+.flash.danger {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Form Container */
+.form-container, .dashboard-container {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    min-width: 400px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    border: none;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #333;
+}
+
+/* Buttons */
+button, .btn {
+    background: #ba68c8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
     font-weight: bold;
+    cursor: pointer;
 }
 
-.feedback-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 15px;
-    margin: 5px 0;
-    background-color: #292929;
-    border-radius: 8px;
+button:hover, .btn:hover {
+    background: #9c27b0;
+}
+
+/* Headings */
+h1, h2 {
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Table Styling for Admin Dashboard */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #999;
+    color: #fff;
+}
+
+th {
+    font-weight: bold;
     font-size: 15px;
+    color: #fff;
 }
 
-.feedback-row.header {
-    font-weight: bold;
-    background-color: #333;
-    color: #00f7ff;
-}
-
+/* Logout Link */
 .logout-link {
     display: inline-block;
-    margin-top: 25px;
-    padding: 10px 20px;
-    background: #ff4c4c;
-    color: white;
+    margin-top: 20px;
+    color: #ba68c8;
     text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-    transition: background 0.3s ease;
+    font-weight: 500;
 }
 
 .logout-link:hover {
-    background: #e03939;
+    text-decoration: underline;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Analytics Box (optional if you add later) */
+.analytics {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.analytics .box {
+    background-color: rgba(255, 255, 255, 0.07);
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 120px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .form-container, .dashboard-container {
+        padding: 20px;
+        min-width: unset;
+        max-width: 100%;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    .analytics {
+        flex-direction: column;
+    }
 }
