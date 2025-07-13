@@ -1,36 +1,41 @@
+<!-- templates/admin_dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h2>🛠️ Admin Dashboard</h2>
+    <div class="dashboard">
+        <h2>🛠️ Admin Dashboard</h2>
 
-    <table class="feedback-table">
-      <thead>
-        <tr>
-          <th>User</th>
-          <th>Feedback</th>
-          <th>Rating</th>
-          <th>Category</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in feedbacks %}
-        <tr>
-          <td>{{ row['username'] }}</td>
-          <td>{{ row['feedback'] }}</td>
-          <td>{{ row['rating'] }}</td>
-          <td>{{ row['category'] }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+        {% if feedbacks %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Feedback</th>
+                        <th>Rating</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for f in feedbacks %}
+                        <tr>
+                            <td>{{ f['username'] }}</td>
+                            <td>{{ f['feedback'] }}</td>
+                            <td>{{ f['rating'] }}</td>
+                            <td>{{ f['category'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No feedback yet.</p>
+        {% endif %}
 
-    <a href="{{ url_for('logout') }}" class="logout">🚪 Logout</a>
-  </div>
+        <a href="{{ url_for('logout') }}" class="btn logout">🚪 Logout</a>
+    </div>
 </body>
 </html>
