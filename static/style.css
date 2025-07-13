@@ -1,39 +1,51 @@
-/* Reset & Base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 body {
-    background: #121212;
-    color: #f0f0f0;
+    background-color: #0e0e0e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    color: #fff;
+    margin: 0;
 }
 
-/* Container / Card */
-.dashboard, .container {
-    background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+.admin-card {
+    background-color: #1c1c1c;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    max-width: 850px;
     width: 90%;
-    max-width: 900px;
     text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
 }
 
-/* Headings */
 h2 {
+    color: #00f0ff;
     margin-bottom: 25px;
-    color: #00e0ff;
 }
 
-/* Logout Button */
-.logout {
+.title-text {
+    font-weight: bold;
+}
+
+.feedback-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    margin: 5px 0;
+    background-color: #292929;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.feedback-row.header {
+    font-weight: bold;
+    background-color: #333;
+    color: #00f7ff;
+}
+
+.logout-link {
     display: inline-block;
     margin-top: 25px;
     padding: 10px 20px;
@@ -45,58 +57,11 @@ h2 {
     transition: background 0.3s ease;
 }
 
-.logout:hover {
+.logout-link:hover {
     background: #e03939;
 }
 
-/* Feedback Table */
-.feedback-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.feedback-table th,
-.feedback-table td {
-    padding: 12px 16px;
-    text-align: left;
-    border-bottom: 1px solid #444;
-}
-
-.feedback-table th {
-    background-color: #1f1f1f;
-    color: #00f7ff;
-    font-weight: 600;
-}
-
-.feedback-table td {
-    background-color: #262626;
-    color: #f2f2f2;
-}
-
-/* Flash Messages */
-.flash {
-    background-color: #2ecc71;
-    color: white;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #00adb5;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: #008891;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
