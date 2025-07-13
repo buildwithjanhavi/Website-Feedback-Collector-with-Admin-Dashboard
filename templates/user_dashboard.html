@@ -1,3 +1,4 @@
+<!-- templates/user_dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,40 +6,29 @@
     <title>User Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="center">
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul class="flash">{{ messages[0] }}</ul>
-      {% endif %}
-    {% endwith %}
+<body>
+    <div class="dashboard">
+        <h2>👋 Welcome, {{ username }}!</h2>
 
-    <div class="card">
-        <h2>Welcome, {{ username }}</h2>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash">{{ messages[0] }}</div>
+          {% endif %}
+        {% endwith %}
+
         <form method="POST">
-            <textarea name="feedback" required placeholder="Your feedback here..."></textarea>
-
-            <label for="rating">Rate our app:</label>
-            <select name="rating" id="rating" required>
-                <option value="" disabled selected>Select rating</option>
-                <option value="1">⭐ - Very Poor</option>
-                <option value="2">⭐⭐ - Poor</option>
-                <option value="3">⭐⭐⭐ - Average</option>
-                <option value="4">⭐⭐⭐⭐ - Good</option>
-                <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+            <textarea name="feedback" placeholder="Write your feedback here..." required></textarea>
+            <input type="number" name="rating" placeholder="Rate us (1-5)" min="1" max="5" required>
+            <select name="category" required>
+                <option value="">Select Category</option>
+                <option value="Bug">🐞 Bug</option>
+                <option value="Suggestion">💡 Suggestion</option>
+                <option value="Appreciation">👏 Appreciation</option>
             </select>
-
-            <label for="category">Category:</label>
-            <select name="category" id="category" required>
-                <option value="" disabled selected>Choose a category</option>
-                <option>UI/UX</option>
-                <option>Performance</option>
-                <option>Features</option>
-                <option>Other</option>
-            </select>
-
-            <button type="submit">Submit Feedback</button>
+            <button type="submit" class="btn">Submit Feedback</button>
         </form>
-        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+
+        <a href="{{ url_for('logout') }}" class="btn logout">🚪 Logout</a>
     </div>
 </body>
 </html>
