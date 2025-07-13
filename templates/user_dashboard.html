@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>User Dashboard</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div class="container">
-    <h2 class="glow">Welcome, {{ session['username'] }}</h2>
+    <h2>👋 Welcome, {{ username }}!</h2>
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -15,26 +15,26 @@
       {% endif %}
     {% endwith %}
 
-    <form action="/submit-feedback" method="POST" class="feedback-card">
-      <label for="content">💬 Your Feedback</label>
-      <input type="text" name="content" placeholder="Share your thoughts..." required>
-
-      <label for="rating">⭐ Rate the App</label>
+    <form method="POST">
+      <textarea name="feedback" placeholder="Your feedback..." required></textarea>
       <select name="rating" required>
-        <option value="" disabled selected>Choose a rating</option>
-        <option value="1">⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="">Rate the App</option>
+        <option value="1">⭐ 1</option>
+        <option value="2">⭐⭐ 2</option>
+        <option value="3">⭐⭐⭐ 3</option>
+        <option value="4">⭐⭐⭐⭐ 4</option>
+        <option value="5">⭐⭐⭐⭐⭐ 5</option>
       </select>
-
-      <button type="submit" class="btn">🚀 Submit Feedback</button>
+      <select name="category" required>
+        <option value="">Feedback Category</option>
+        <option value="UI">UI</option>
+        <option value="Performance">Performance</option>
+        <option value="Usability">Usability</option>
+      </select>
+      <button type="submit">Submit Feedback</button>
     </form>
 
-    <div class="logout-footer">
-      <a href="{{ url_for('auth.logout') }}" class="logout-btn">🔓 Logout</a>
-    </div>
+    <a href="{{ url_for('logout') }}" class="logout">🚪 Logout</a>
   </div>
 </body>
 </html>
