@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>User Dashboard</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-  <div class="container">
-    <h2>👋 Welcome, {{ username }}!</h2>
-
+<body class="center">
     {% with messages = get_flashed_messages() %}
       {% if messages %}
-        <div class="flash">{{ messages[0] }}</div>
+        <ul class="flash">{{ messages[0] }}</ul>
       {% endif %}
     {% endwith %}
 
-    <form method="POST">
-      <textarea name="feedback" placeholder="Your feedback..." required></textarea>
-      <select name="rating" required>
-        <option value="">Rate the App</option>
-        <option value="1">⭐ 1</option>
-        <option value="2">⭐⭐ 2</option>
-        <option value="3">⭐⭐⭐ 3</option>
-        <option value="4">⭐⭐⭐⭐ 4</option>
-        <option value="5">⭐⭐⭐⭐⭐ 5</option>
-      </select>
-      <select name="category" required>
-        <option value="">Feedback Category</option>
-        <option value="UI">UI</option>
-        <option value="Performance">Performance</option>
-        <option value="Usability">Usability</option>
-      </select>
-      <button type="submit">Submit Feedback</button>
-    </form>
+    <div class="card">
+        <h2>Welcome, {{ username }}</h2>
+        <form method="POST">
+            <textarea name="feedback" required placeholder="Your feedback here..."></textarea>
 
-    <a href="{{ url_for('logout') }}" class="logout">🚪 Logout</a>
-  </div>
+            <label for="rating">Rate our app:</label>
+            <select name="rating" id="rating" required>
+                <option value="" disabled selected>Select rating</option>
+                <option value="1">⭐ - Very Poor</option>
+                <option value="2">⭐⭐ - Poor</option>
+                <option value="3">⭐⭐⭐ - Average</option>
+                <option value="4">⭐⭐⭐⭐ - Good</option>
+                <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+            </select>
+
+            <label for="category">Category:</label>
+            <select name="category" id="category" required>
+                <option value="" disabled selected>Choose a category</option>
+                <option>UI/UX</option>
+                <option>Performance</option>
+                <option>Features</option>
+                <option>Other</option>
+            </select>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    </div>
 </body>
 </html>
