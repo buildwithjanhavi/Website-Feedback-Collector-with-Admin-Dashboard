@@ -1,211 +1,99 @@
-/* General Reset */
-* {
+body {
+  background-color: #121212;
+  color: #f0f0f0;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #121212;
-  color: #ffffff;
-  line-height: 1.6;
-  padding: 0;
-}
-
-/* Navbar & Footer */
-nav, footer {
-  background-color: #0a0a0a;
-  text-align: center;
-  padding: 1rem;
-}
-
-footer {
-  font-size: 0.9rem;
-  color: #bbb;
-}
-
-/* Hero / Landing */
-body.landing-page {
-  background: linear-gradient(to right, #141e30, #243b55);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.hero-section {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 3rem 1rem;
-}
-
-.content-box {
+.container {
   max-width: 600px;
-}
-
-.content-box h1 {
-  font-size: 3rem;
-  color: #ffffff;
-  margin-bottom: 1rem;
-}
-
-.content-box h1 span {
-  color: #00d9ff;
-}
-
-.content-box p {
-  font-size: 1.2rem;
-  color: #ddd;
-  margin-bottom: 2rem;
-}
-
-.btn-group .btn,
-.btn {
-  display: inline-block;
-  background: #00d9ff;
-  color: black;
-  padding: 0.8rem 1.5rem;
-  margin: 0.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: transform 0.3s;
-}
-
-.btn.secondary {
-  background-color: #ffffff;
-  color: #333;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-}
-
-/* Forms */
-form {
-  max-width: 500px;
-  margin: 2rem auto;
-  background-color: #1e1e1e;
+  margin: auto;
   padding: 2rem;
-  border-radius: 12px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #000;
+  margin-top: 3rem;
 }
 
-form input,
-form textarea,
-form select {
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #00f7ff;
+}
+
+input, textarea, select {
   width: 100%;
   padding: 0.8rem;
   margin-bottom: 1rem;
   border: none;
-  border-radius: 8px;
-  background: #2a2a2a;
-  color: #fff;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
-form button {
-  background-color: #00d9ff;
-  color: #000;
-  padding: 0.8rem 1.5rem;
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #00c2ff;
+  color: white;
+  font-size: 1rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: #00a4cc;
+}
+
+a {
+  color: #00f7ff;
+  text-decoration: none;
+}
+
+.logout {
+  display: block;
+  text-align: center;
+  margin-top: 1.5rem;
   font-weight: bold;
 }
 
-form button:hover {
-  background-color: #00aacc;
-}
-
-/* Flash Messages */
 .flash {
-  text-align: center;
+  background-color: #444;
   padding: 1rem;
-  margin: 1rem auto;
-  max-width: 500px;
-  border-radius: 8px;
-  background-color: #333;
-  color: #00d9ff;
+  margin-bottom: 1rem;
+  border-left: 5px solid #00f7ff;
 }
 
-/* Dashboard Layouts */
-.dashboard {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 1rem;
-}
-
-.dashboard h2 {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.stats-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 1rem;
-}
-
-.card {
-  background-color: #1e1e1e;
-  padding: 1.5rem;
-  border-radius: 12px;
-  flex: 1 1 200px;
-  text-align: center;
-  color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card i {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-/* Feedback Table */
 .feedback-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 2rem;
-  background: #1e1e1e;
+  margin-top: 1rem;
 }
 
-.feedback-table th,
-.feedback-table td {
-  padding: 1rem;
-  border-bottom: 1px solid #333;
+.feedback-table th, .feedback-table td {
+  border: 1px solid #333;
+  padding: 0.8rem;
   text-align: left;
 }
 
 .feedback-table th {
-  background-color: #242424;
+  background-color: #222;
 }
 
-.feedback-table tr:hover {
-  background-color: #2a2a2a;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .hero-section h1 {
-    font-size: 2rem;
-  }
-
-  .stats-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  form {
+@media (max-width: 600px) {
+  .container {
     margin: 1rem;
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
   }
 }
