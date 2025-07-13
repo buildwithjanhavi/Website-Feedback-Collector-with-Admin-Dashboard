@@ -2,35 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Website Feedback Collector</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-  <section class="hero">
-    <h1>🚀 Website Feedback Collector</h1>
-    <p>Collect, analyze, and manage user feedback with AI sentiment insights</p>
-    <div class="hero-buttons">
-      <a href="{{ url_for('auth.login') }}" class="btn">🔐 Login</a>
-      <a href="{{ url_for('auth.register') }}" class="btn">📝 Register</a>
-    </div>
-  </section>
+<body class="landing-page">
 
-  <section class="features">
-    <h2>✨ Why This App Stands Out</h2>
-    <div class="feature-cards">
-      <div class="feature-card">
-        <h3>💡 Smart Feedback</h3>
-        <p>AI-powered sentiment analysis for better insights.</p>
-      </div>
-      <div class="feature-card">
-        <h3>🛠 Admin Control</h3>
-        <p>Manage feedback easily with search & charts.</p>
-      </div>
-      <div class="feature-card">
-        <h3>📱 Fully Responsive</h3>
-        <p>Works beautifully on mobile, tablet & desktop.</p>
+  <div class="hero-section">
+    <div class="content-box">
+      <h1>Welcome to <span>Feedback Collector</span></h1>
+      <p>Submit your thoughts. Help us grow better together.</p>
+      <div class="btn-group">
+        <a href="{{ url_for('login') }}" class="btn">🔐 Login</a>
+        <a href="{{ url_for('register') }}" class="btn secondary">📝 Register</a>
       </div>
     </div>
-  </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Feedback Collector. Built with ❤️ for impact.</p>
+  </footer>
+
 </body>
 </html>
+
