@@ -6,35 +6,27 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="dashboard">
-        <h2>🛠️ Admin Dashboard</h2>
-
+    <div class="admin-card">
+        <h2>🛠️ <span class="title-text">Admin Dashboard</span></h2>
         {% if feedbacks %}
-            <table class="feedback-table">
-                <thead>
-                    <tr>
-                        <th>User</th>
-                        <th>Feedback</th>
-                        <th>Rating</th>
-                        <th>Category</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for f in feedbacks %}
-                        <tr>
-                            <td>{{ f['username'] }}</td>
-                            <td>{{ f['feedback'] }}</td>
-                            <td>{{ f['rating'] }}</td>
-                            <td>{{ f['category'] }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="feedback-row header">
+                <div>User</div>
+                <div>Feedback</div>
+                <div>Rating</div>
+                <div>Category</div>
+            </div>
+            {% for f in feedbacks %}
+                <div class="feedback-row">
+                    <div>{{ f['username'] }}</div>
+                    <div>{{ f['feedback'] }}</div>
+                    <div>{{ f['rating'] }}</div>
+                    <div>{{ f['category'] }}</div>
+                </div>
+            {% endfor %}
         {% else %}
             <p>No feedback submitted yet.</p>
         {% endif %}
-
-        <a href="{{ url_for('logout') }}" class="btn logout">🚪 Logout</a>
+        <a href="{{ url_for('logout') }}" class="logout-link">📕 Logout</a>
     </div>
 </body>
 </html>
