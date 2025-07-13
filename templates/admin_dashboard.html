@@ -1,56 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div class="container">
-    <h2 class="glow">Admin Dashboard</h2>
+    <h2>🛠️ Admin Dashboard</h2>
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <div class="flash">{{ messages[0] }}</div>
-      {% endif %}
-    {% endwith %}
+    <table class="feedback-table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Feedback</th>
+          <th>Rating</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in feedbacks %}
+        <tr>
+          <td>{{ row['username'] }}</td>
+          <td>{{ row['feedback'] }}</td>
+          <td>{{ row['rating'] }}</td>
+          <td>{{ row['category'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-    <!-- Stats Cards -->
-    <div class="stats-grid">
-      <div class="stat-card total">
-        <h3>📝 Total Feedbacks</h3>
-        <p>{{ total_count }}</p>
-      </div>
-      <div class="stat-card positive">
-        <h3>👍 Positive</h3>
-        <p>{{ positive_count }}</p>
-      </div>
-      <div class="stat-card neutral">
-        <h3>😐 Neutral</h3>
-        <p>{{ neutral_count }}</p>
-      </div>
-      <div class="stat-card negative">
-        <h3>👎 Negative</h3>
-        <p>{{ negative_count }}</p>
-      </div>
-    </div>
-
-    <!-- Feedback List -->
-    <div class="feedback-list">
-      <h3 class="feedback-title">Submitted Feedbacks</h3>
-      {% for feedback in feedbacks %}
-        <div class="feedback-card">
-          <p><strong>User:</strong> {{ feedback[1] }}</p>
-          <p><strong>Feedback:</strong> {{ feedback[2] }}</p>
-          <p><strong>Sentiment:</strong> {{ feedback[3] }}</p>
-          <p><strong>Rating:</strong> {{ feedback[4] }} ⭐</p>
-        </div>
-      {% endfor %}
-    </div>
-
-    <div class="logout-footer">
-      <a href="{{ url_for('auth.logout') }}" class="logout-btn">🔓 Logout</a>
-    </div>
+    <a href="{{ url_for('logout') }}" class="logout">🚪 Logout</a>
   </div>
 </body>
 </html>
