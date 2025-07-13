@@ -1,28 +1,19 @@
+<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Website Feedback Collector</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Website Feedback Collector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="landing-page">
-
-  <div class="hero-section">
-    <div class="content-box">
-      <h1>Welcome to <span>Feedback Collector</span></h1>
-      <p>Submit your thoughts. Help us grow better together.</p>
-      <div class="btn-group">
-        <a href="{{ url_for('login') }}" class="btn">🔐 Login</a>
-        <a href="{{ url_for('register') }}" class="btn secondary">📝 Register</a>
-      </div>
+<body>
+    <div class="container center">
+        <h1>✨ Welcome to the Website Feedback Collector ✨</h1>
+        <p>Your voice matters. Help us improve by sharing your feedback.</p>
+        <div class="btn-group">
+            <a href="{{ url_for('login') }}" class="btn">🔐 Login</a>
+            <a href="{{ url_for('register') }}" class="btn btn-secondary">📝 Register</a>
+        </div>
     </div>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 Feedback Collector. Built with ❤️ for impact.</p>
-  </footer>
-
 </body>
 </html>
-
