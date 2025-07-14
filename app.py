@@ -1,112 +1,115 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, session, flash
 import sqlite3
-from database import init_db, get_db_connection
+from textblob import TextBlob
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'
+app.secret_key = 'your_secret_key'
 
-# Initialize the database
-init_db()
+# Connect to database
+def get_db_connection():
+    conn = sqlite3.connect('feedback.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
+# Home page
 @app.route('/')
 def index():
     return render_template('index.html')
 
+# Register
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        username = request.form['username'].strip()
-        password = request.form['password'].strip()
-
-        if not username or not password:
-            flash('Please fill in all fields.')
-            return redirect(url_for('register'))
-
+        username = request.form['username']
+        password = request.form['password']
         conn = get_db_connection()
-        existing_user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
-
-        if existing_user:
+        try:
+            conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
+            conn.commit()
+            flash('Registration successful! Please login.', 'success')
+            return redirect('/login')
+        except sqlite3.IntegrityError:
+            flash('Username already exists. Try another.', 'error')
+        finally:
             conn.close()
-            flash('Username already exists.')
-            return redirect(url_for('register'))
-
-        conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
-        conn.commit()
-        conn.close()
-        flash('Registration successful. Please log in.')
-        return redirect(url_for('login'))
-
     return render_template('register.html')
 
+# Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username'].strip()
-        password = request.form['password'].strip()
-
+        username = request.form['username']
+        password = request.form['password']
         conn = get_db_connection()
         user = conn.execute('SELECT * FROM users WHERE username = ? AND password = ?', (username, password)).fetchone()
         conn.close()
-
         if user:
             session['username'] = username
-            if 'admin' in username.lower():
-                return redirect(url_for('admin_dashboard'))
+            if username.endswith('admin'):
+                return redirect('/admin-dashboard')
             else:
-                return redirect(url_for('dashboard'))
+                return redirect('/dashboard')
         else:
-            flash('Invalid credentials')
-            return redirect(url_for('login'))
-
+            flash('Invalid credentials. Try again.', 'error')
     return render_template('login.html')
 
+# User Dashboard
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-    if 'username' not in session:
-        return redirect(url_for('login'))
-
+    if 'username' not in session or session['username'].endswith('admin'):
+        return redirect('/login')
+    
     username = session['username']
-
+    
     if request.method == 'POST':
-        feedback = request.form['feedback'].strip()
-        rating = request.form['rating']
-        category = request.form['category']
+        feedback = request.form['feedback']
+        rating = request.form.get('rating')
+        category = request.form.get('category')
 
-        if not feedback or not rating or not category:
-            flash("All fields are required.")
-            return redirect(url_for('dashboard'))
+        # Sentiment Analysis
+        sentiment = TextBlob(feedback).sentiment.polarity
+        if sentiment > 0:
+            sentiment_label = 'Positive'
+        elif sentiment < 0:
+            sentiment_label = 'Negative'
+        else:
+            sentiment_label = 'Neutral'
 
         conn = get_db_connection()
         conn.execute(
-            'INSERT INTO feedback (username, feedback, rating, category) VALUES (?, ?, ?, ?)',
-            (username, feedback, rating, category)
+            'INSERT INTO feedback (username, feedback, rating, category, sentiment) VALUES (?, ?, ?, ?, ?)',
+            (username, feedback, rating, category, sentiment_label)
         )
         conn.commit()
         conn.close()
-
-        flash("Thank you for submitting your feedback!")
-        return redirect(url_for('dashboard'))
+        flash('Thank you for submitting your feedback!', 'success')
+        return redirect('/dashboard')
 
     return render_template('user_dashboard.html', username=username)
 
+# Admin Dashboard
 @app.route('/admin-dashboard')
 def admin_dashboard():
-    if 'username' not in session or 'admin' not in session['username'].lower():
-        flash("Unauthorized access.")
-        return redirect(url_for('login'))
-
+    if 'username' not in session or not session['username'].endswith('admin'):
+        return redirect('/login')
+    
     conn = get_db_connection()
-    feedbacks = conn.execute('SELECT * FROM feedback ORDER BY id DESC').fetchall()
-    stats = conn.execute('SELECT category, COUNT(*) as count FROM feedback GROUP BY category').fetchall()
+    feedback = conn.execute('SELECT * FROM feedback').fetchall()
+    stats = conn.execute('''
+        SELECT category, COUNT(*) as count
+        FROM feedback
+        GROUP BY category
+    ''').fetchall()
     conn.close()
+    
+    return render_template('admin_dashboard.html', feedback=feedback, stats=stats)
 
-    return render_template('admin_dashboard.html', feedbacks=feedbacks, stats=stats)
-
+# Logout
 @app.route('/logout')
 def logout():
-    session.pop('username', None)
-    flash("Logged out successfully.")
-    return redirect(url_for('index'))
+    session.clear()
+    flash('You have been logged out.', 'info')
+    return redirect('/login')
 
 if __name__ == '__main__':
     app.run(debug=True)
