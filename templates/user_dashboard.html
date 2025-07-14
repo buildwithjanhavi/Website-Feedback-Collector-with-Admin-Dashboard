@@ -1,34 +1,63 @@
-<!-- templates/user_dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Dashboard</title>
+    <title>User Dashboard | Feedback Collector</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="dashboard">
-        <h2>👋 Welcome, {{ username }}!</h2>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">Feedback<span>Collector</span></div>
+            <div class="nav-links">
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
 
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <div class="flash">{{ messages[0] }}</div>
-          {% endif %}
-        {% endwith %}
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>Welcome, {{ session['username'] }} 👋</h1>
+                <p>We value your feedback. Share your thoughts below.</p>
 
-        <form method="POST">
-            <textarea name="feedback" placeholder="Write your feedback here..." required></textarea>
-            <input type="number" name="rating" placeholder="Rate us (1-5)" min="1" max="5" required>
-            <select name="category" required>
-                <option value="">Select Category</option>
-                <option value="Bug">🐞 Bug</option>
-                <option value="Suggestion">💡 Suggestion</option>
-                <option value="Appreciation">👏 Appreciation</option>
-            </select>
-            <button type="submit" class="btn">Submit Feedback</button>
-        </form>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <div class="flash">
+                      {% for message in messages %}
+                        <p>{{ message }}</p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                {% endwith %}
 
-        <a href="{{ url_for('logout') }}" class="btn logout">🚪 Logout</a>
+                <form action="{{ url_for('dashboard') }}" method="POST" style="max-width: 600px; margin: auto; text-align: left;">
+                    <label for="feedback">Your Feedback</label><br>
+                    <textarea name="feedback" rows="4" required placeholder="Write your feedback here..."></textarea><br><br>
+
+                    <label for="rating">Rating</label><br>
+                    <select name="rating" required>
+                        <option value="">Select a rating</option>
+                        <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+                        <option value="4">⭐⭐⭐⭐ - Good</option>
+                        <option value="3">⭐⭐⭐ - Average</option>
+                        <option value="2">⭐⭐ - Poor</option>
+                        <option value="1">⭐ - Terrible</option>
+                    </select><br><br>
+
+                    <label for="category">Category</label><br>
+                    <select name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="UI">UI</option>
+                        <option value="UX">UX</option>
+                        <option value="Functionality">Functionality</option>
+                        <option value="Performance">Performance</option>
+                        <option value="Other">Other</option>
+                    </select><br><br>
+
+                    <button class="btn btn-primary" type="submit">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>
