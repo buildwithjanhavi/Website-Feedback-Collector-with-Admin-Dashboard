@@ -95,7 +95,7 @@ Key components of the scope include:
   ![Landing Page](https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard/blob/main/assests-1/landing%20page.png)
   
 ### User dashboard view
-![User Feedback Dashboard](https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard/blob/main/assests-1/user%20dashboard.png)
+![User Feedback Dashboard](https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard/blob/main/assests-1/user.png)
 
 ![Admin Feedback Dashboard](https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard/blob/main/assests-1/admin%20dashboard.png)
 ---
