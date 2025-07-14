@@ -13,67 +13,103 @@ This application demonstrates core backend skills, dynamic templating, and clien
 > A structured feedback collection system for your website with real-time admin insights and basic sentiment tagging.
 
 ### 🔍 Scope of Work:
-- 📬 Feedback submission form for website users
-- 🧠 Basic sentiment tagging based on keyword detection
-- 🖥️ Admin dashboard to view, filter, and monitor all feedback
-- ✅ Option to mark feedback as resolved or addressed *(upcoming feature)*
+This project aims to build a structured and professional feedback collection system for websites. It enables users to submit feedback and allows administrators to manage and view all submissions efficiently.
+
+Key components of the scope include:
+
+- 🔐 Secure user authentication system (registration and login)
+- 📝 Structured feedback form with:
+  - Feedback text
+  - Numeric rating (1–5)
+  - Category selection
+- 📊 Admin dashboard for viewing all submitted feedback in a clean, tabular format
+- ✅ Flash message confirmation after submission
+- 🎨 Modern, responsive, and user-friendly UI
+- ☁️ Live deployment using Render for easy access and demonstration
 
 ---
 
 ## 🚀 Live Demo
 
-🔗 [Feedback Form](https://website-feedback-collector-2-78z6.onrender.com)  
-🔒 [Admin Dashboard](https://website-feedback-collector-2-78z6.onrender.com)
-
+🌐 [Deployed Link (Render)](https://website-feedback-collector-3-bync.onrender.com/)
 > Submit feedback on the home page and view it instantly in the admin panel.
 
 ---
 
 ## 🛠️ Tools & Technologies Used
 
-- **Frontend:** HTML, CSS (Dark Mode), Vanilla JavaScript
-- **Backend:** Python (Flask)
-- **Database:** SQLite (PostgreSQL-ready structure)
-- **Deployment:** Render
+- **Frontend**: HTML5, CSS3 (Custom, Fully Responsive)
+- **Backend**: Python (Flask)
+- **Database**: SQLite
+- **Deployment**: Render
+- **Others**: Gunicorn, Jinja2 Templates
 
 ---
 
 ## 🎯 Features
 
-- ✅ Easy-to-use feedback submission form
-- 🧠 Sentiment tagging (Positive / Negative / Neutral)
-- 📊 Admin dashboard with real-time updates
-- 🔍 Filtering options *(planned)*
-- 🟢 Mark-as-resolved status *(coming soon)*
+- 🔐 **User Authentication**
+  - Register & Login system
+  - Separate User and Admin Dashboards
+- 📝 **Submit Feedback**
+  - Users can submit feedback along with a rating and category
+- 📊 **Admin Dashboard**
+  - View all feedbacks
+  - Beautiful UI to showcase responses
+- ✅ **Flash Messages**
+  - Feedback submission confirmation (`Thank you for submitting the feedback`)
+- 🎨 **Professional & Responsive UI**
+  - Modern, dark-themed design
+  - Clean layout and intuitive experience
+
 ---
 
 
 ## 🧩 Expected Deliverables
 
-- ✅ Integrated website feedback form  
-- ✅ Admin dashboard with feedback list and sentiment tags  
-- 📄 Documentation (this README!)  
-- 🔍 Feedback filtering (to be added)  
-- ✅ Future-ready database structure for PostgreSQL  
-- 🔄 Option to mark feedback as addressed (planned)
+- ✅ Fully responsive **website feedback form**
+- ✅ Secure **login and registration system**
+- ✅ Separate **user and admin dashboards**
+- ✅ **Feedback dashboard** with:
+  - Username
+  - Feedback text
+  - Rating (1–5)
+  - Feedback category
+    
+- ✅ **Admin panel** with:
+  - Tabular display of all feedback
+  - Sorted view by category and rating
 
+- ✅ **Flash message** after successful feedback submission
+- ✅ Backend powered by **Flask + SQLite**
+- ✅ Deployed live on **Render**
+- ✅ Complete setup with:
+  - `requirements.txt`
+  - `Procfile` and `runtime.txt`
+  - `README.md` with setup instructions and screenshots
+  
 ---
 
 ## 🖼️ Screenshots 
-### Homepage with feedback form
-  ![Feedback Page](https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard-/blob/main/assests-1/feedback%20form.png)
+### Landing Page
+  ![Landing Page](https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard/blob/main/assests-1/landing%20page.png)
   
-### Admin dashboard view
+### User dashboard view
+![User Feedback Dashboard](https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard/blob/main/assests-1/user%20dashboard.png)
 
-![Admin Feedback Dashboard](https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard-/blob/main/assests-1/admin%20.png)
+![Admin Feedback Dashboard](https://github.com/buildwithjanhavi/Website-Feedback-Collector-with-Admin-Dashboard/blob/main/assests-1/admin%20dashboard.png)
 ---
 ## 🔮 Future Improvements
 
-- [ ] Add keyword search in admin dashboard
-- [ ] Add sentiment filter (positive/negative/neutral)
-- [ ] Mark feedback as resolved
-- [ ] Export feedbacks to CSV
-- [ ] Switch from SQLite to PostgreSQL (optional for production)
+
+- Integrate sentiment analysis using AI (TextBlob or Hugging Face models)
+- Add search and filter options to admin dashboard
+- Add pagination for large feedback data
+- Export feedback as CSV or Excel
+- Email notifications for admin on new feedback
+- Add star-based rating input (interactive)
+- Improve accessibility and keyboard navigation
+- Add animations and transitions to make UI more engaging
 
 ---
 ##  Credits
