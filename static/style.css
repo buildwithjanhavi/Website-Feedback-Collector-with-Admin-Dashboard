@@ -1,14 +1,24 @@
-/* Global styles */
-body {
+/* Global Reset */
+* {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #0d0d0d;
-    color: white;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #0f0f0f;
+    color: #f0f0f0;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 0;
 }
 
 /* Navbar */
@@ -16,155 +26,182 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #000;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid #111;
+    padding-top: 20px;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
 }
 
-.logout-link {
-    font-weight: 500;
-    color: #00d8ff;
-    transition: 0.3s;
+.logo span {
+    color: #00bcd4;
 }
 
-.logout-link:hover {
+.nav-links a {
+    margin-left: 25px;
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #00bcd4;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #cccccc;
+}
+
+.btn,
+.btn-outline,
+.btn-primary {
+    padding: 12px 25px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn {
+    background-color: #00bcd4;
+    color: #ffffff;
+}
+
+.btn-outline {
+    border: 2px solid #00bcd4;
+    background: transparent;
+    color: #00bcd4;
+}
+
+.btn-outline:hover {
+    background-color: #00bcd4;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #00bcd4;
+    color: #ffffff;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background-color: #019aad;
+}
+
+/* About Section */
+.about-section {
+    background-color: #121212;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.about-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    font-size: 1.1rem;
+    color: #cccccc;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Features Section */
+.features-section {
+    background-color: #181818;
+    text-align: center;
+}
+
+.features-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: #222;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: #00bcd4;
+}
+
+.feature-card h3 {
+    color: #00bcd4;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #cccccc;
+}
+
+/* Footer */
+.footer-section {
+    background-color: #0a0a0a;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9rem;
+}
+
+.footer-section a {
+    color: #00bcd4;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.footer-section a:hover {
     text-decoration: underline;
 }
 
-/* Dashboard Heading */
-.dashboard-container {
-    text-align: center;
-    margin-top: 4rem;
-    padding: 1rem;
-}
-
-.dashboard-heading {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.dashboard-subheading {
-    font-size: 1.2rem;
-    color: #ccc;
-}
-
-/* Table Styles for Admin Dashboard */
-.table-container {
-    width: 90%;
-    margin: 3rem auto 2rem auto;
-    overflow-x: auto;
-}
-
-.feedback-table {
-    width: 100%;
-    border-collapse: collapse;
-    color: white;
-    background-color: #111;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
-
-.feedback-table th,
-.feedback-table td {
-    padding: 12px 18px;
-    text-align: left;
-    border-bottom: 1px solid #333;
-}
-
-.feedback-table th {
-    background-color: #1a1a1a;
-    color: #00d8ff;
-    font-weight: bold;
-}
-
-.feedback-table tr:hover {
-    background-color: #1f1f1f;
-}
-
-/* Feedback Stats (for future enhancements) */
-.feedback-stats {
-    margin-top: 4rem;
-    text-align: center;
-}
-
-/* Forms (login/register/dashboard) */
-form {
-    background-color: #111;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 400px;
-    margin: 2rem auto;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
-}
-
-form h2 {
-    text-align: center;
-    color: #00d8ff;
-}
-
-input[type="text"],
-input[type="password"],
-textarea,
-select {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0 20px 0;
-    border: none;
-    border-radius: 4px;
-    background-color: #1a1a1a;
-    color: white;
-}
-
-input[type="submit"],
-button {
-    background-color: #00d8ff;
-    border: none;
-    padding: 12px;
-    color: black;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    transition: 0.3s;
-}
-
-input[type="submit"]:hover,
-button:hover {
-    background-color: #00b6d6;
-}
-
-/* Flash messages */
-.flash {
-    text-align: center;
-    margin: 1rem auto;
-    color: #00ffcc;
-    font-weight: 500;
-}
-
-/* Responsive */
+/* Responsive Typography */
 @media (max-width: 768px) {
-    .dashboard-heading {
+    .hero-content h1 {
         font-size: 2rem;
     }
 
-    .feedback-table th,
-    .feedback-table td {
-        padding: 10px;
+    .hero-content p {
+        font-size: 1rem;
     }
 
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+    .nav-links {
+        flex-wrap: wrap;
+        text-align: center;
     }
 
-    .logout-link {
-        margin-top: 0.5rem;
+    .nav-links a {
+        display: inline-block;
+        margin: 10px;
     }
 }
