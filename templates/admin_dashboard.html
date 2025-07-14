@@ -1,41 +1,68 @@
-<!-- templates/admin_dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
+    <title>Admin Dashboard | Feedback Collector</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="dashboard">
-        <h2>🛠️ Admin Dashboard</h2>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">Admin<span>Dashboard</span></div>
+            <div class="nav-links">
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
 
-        {% if feedbacks %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>User</th>
-                        <th>Feedback</th>
-                        <th>Rating</th>
-                        <th>Category</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for f in feedbacks %}
-                        <tr>
-                            <td>{{ f['username'] }}</td>
-                            <td>{{ f['feedback'] }}</td>
-                            <td>{{ f['rating'] }}</td>
-                            <td>{{ f['category'] }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>No feedback yet.</p>
-        {% endif %}
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>Welcome Admin 👩‍💼</h1>
+                <p>Here's an overview of all feedback received.</p>
 
-        <a href="{{ url_for('logout') }}" class="btn logout">🚪 Logout</a>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <div class="flash">
+                      {% for message in messages %}
+                        <p>{{ message }}</p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                {% endwith %}
+
+                <div class="feedback-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Feedback</th>
+                                <th>Rating</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in feedbacks %}
+                            <tr>
+                                <td>{{ row['username'] }}</td>
+                                <td>{{ row['feedback'] }}</td>
+                                <td>{{ row['rating'] }} ⭐</td>
+                                <td>{{ row['category'] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="stats-section">
+                    <h2>📊 Feedback Stats</h2>
+                    <ul class="stats">
+                        {% for stat in stats %}
+                        <li><strong>{{ stat['category'] }}</strong>: {{ stat['count'] }} entries</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
