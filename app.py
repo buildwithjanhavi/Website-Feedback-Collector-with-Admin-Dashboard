@@ -1,13 +1,12 @@
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import sqlite3
+from database import init_db, get_db_connection
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = 'your_secret_key_here'
 
-def get_db_connection():
-    conn = sqlite3.connect('feedback.db')
-    conn.row_factory = sqlite3.Row
-    return conn
+# Initialize the database
+init_db()
 
 @app.route('/')
 def index():
@@ -16,70 +15,98 @@ def index():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form['username'].strip()
+        password = request.form['password'].strip()
+
+        if not username or not password:
+            flash('Please fill in all fields.')
+            return redirect(url_for('register'))
+
         conn = get_db_connection()
-        try:
-            conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
-            conn.commit()
-            flash('Registration successful! Please login.', 'success')
-            return redirect('/login')
-        except sqlite3.IntegrityError:
-            flash('Username already exists. Please try another.', 'danger')
-        finally:
+        existing_user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+
+        if existing_user:
             conn.close()
+            flash('Username already exists.')
+            return redirect(url_for('register'))
+
+        conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
+        conn.commit()
+        conn.close()
+        flash('Registration successful. Please log in.')
+        return redirect(url_for('login'))
+
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form['username'].strip()
+        password = request.form['password'].strip()
+
         conn = get_db_connection()
         user = conn.execute('SELECT * FROM users WHERE username = ? AND password = ?', (username, password)).fetchone()
         conn.close()
+
         if user:
             session['username'] = username
-            if username.endswith('admin'):
-                return redirect('/admin-dashboard')
-            return redirect('/dashboard')
+            if 'admin' in username.lower():
+                return redirect(url_for('admin_dashboard'))
+            else:
+                return redirect(url_for('dashboard'))
         else:
-            flash('Invalid credentials. Please try again.', 'danger')
+            flash('Invalid credentials')
+            return redirect(url_for('login'))
+
     return render_template('login.html')
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     if 'username' not in session:
-        return redirect('/login')
+        return redirect(url_for('login'))
+
+    username = session['username']
+
     if request.method == 'POST':
-        feedback = request.form['feedback']
+        feedback = request.form['feedback'].strip()
         rating = request.form['rating']
         category = request.form['category']
-        username = session['username']
+
+        if not feedback or not rating or not category:
+            flash("All fields are required.")
+            return redirect(url_for('dashboard'))
+
         conn = get_db_connection()
-        conn.execute('INSERT INTO feedback (username, feedback, rating, category) VALUES (?, ?, ?, ?)', 
-                     (username, feedback, rating, category))
+        conn.execute(
+            'INSERT INTO feedback (username, feedback, rating, category) VALUES (?, ?, ?, ?)',
+            (username, feedback, rating, category)
+        )
         conn.commit()
         conn.close()
-        flash('Thank you for submitting the feedback!', 'success')
-    return render_template('user_dashboard.html', username=session['username'])
+
+        flash("Thank you for submitting your feedback!")
+        return redirect(url_for('dashboard'))
+
+    return render_template('user_dashboard.html', username=username)
 
 @app.route('/admin-dashboard')
 def admin_dashboard():
-    if 'username' not in session or not session['username'].endswith('admin'):
-        return redirect('/login')
+    if 'username' not in session or 'admin' not in session['username'].lower():
+        flash("Unauthorized access.")
+        return redirect(url_for('login'))
+
     conn = get_db_connection()
-    feedbacks = conn.execute('SELECT * FROM feedback').fetchall()
+    feedbacks = conn.execute('SELECT * FROM feedback ORDER BY id DESC').fetchall()
+    stats = conn.execute('SELECT category, COUNT(*) as count FROM feedback GROUP BY category').fetchall()
     conn.close()
-    total = len(feedbacks)
-    avg_rating = round(sum([f['rating'] for f in feedbacks])/total, 2) if total else 0
-    categories = {}
-    for f in feedbacks:
-        cat = f['category']
-        categories[cat] = categories.get(cat, 0) + 1
-    return render_template('admin_dashboard.html', feedbacks=feedbacks, total=total, avg_rating=avg_rating, categories=categories)
+
+    return render_template('admin_dashboard.html', feedbacks=feedbacks, stats=stats)
 
 @app.route('/logout')
 def logout():
     session.pop('username', None)
-    return redirect('/')
+    flash("Logged out successfully.")
+    return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(debug=True)
