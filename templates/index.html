@@ -1,73 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Feedback Collector</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Website Feedback Collector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-    <header class="hero-section">
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo">Feedback<span>Collector</span></div>
-                <div class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#features">Features</a>
-                    <a href="#footer">Contact</a>
-                    <a href="/register" class="btn">Register</a>
-                    <a href="/login" class="btn-outline">Login</a>
-                </div>
-            </nav>
-            <div class="hero-content">
-                <h1>Build Better Experiences<br> with Real Feedback</h1>
-                <p>Collect and analyze website feedback with a smart, AI-powered tool for growth, improvement, and satisfaction.</p>
-                <a href="/register" class="btn-primary">Get Started</a>
-            </div>
-        </div>
-    </header>
+<body class="landing-body">
+  <div class="hero-container">
+    <h1 class="hero-title">Website Feedback Collector</h1>
+    <p class="hero-subtitle">Empowering websites with meaningful insights 💡</p>
+    
+    <div class="hero-buttons">
+      <a href="{{ url_for('login') }}" class="btn btn-glow">🔐 Login</a>
+      <a href="{{ url_for('register') }}" class="btn btn-outline">📝 Register</a>
+    </div>
+  </div>
 
-    <section id="about" class="section about-section">
-        <div class="container">
-            <div class="about-content">
-                <h2>What is Website Feedback Collector?</h2>
-                <p>This platform allows users to submit their thoughts and opinions on any website while the admin gets powerful analytics with sentiment insights, charts, and keyword filtering for decision making. Secure, simple, and impactful.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="section features-section">
-        <div class="container">
-            <h2>Key Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>🎯 Smart Feedback</h3>
-                    <p>Collect ratings, categories, and user comments effortlessly with an elegant form interface.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>📊 Admin Dashboard</h3>
-                    <p>AI-powered sentiment analysis, visual analytics, and keyword filtering for deep insights.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🔒 Secure & Authenticated</h3>
-                    <p>Role-based access with hashed login ensures safety and privacy for all users.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>⚡ Fast & Responsive</h3>
-                    <p>Beautiful modern design that works across all devices with lightning speed.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="footer" class="footer-section">
-        <div class="container">
-            <p>Crafted with ❤️ by Janhavi Dubey • © 2025 Feedback Collector</p>
-            <p>
-                <a href="https://github.com/buildwithjanhavi/website-feedback-collector" target="_blank">GitHub Repo</a>
-            </p>
-        </div>
-    </footer>
+  <footer class="footer-note">© 2025 Website Feedback Collector • Built with 💙 by Janhavi</footer>
 </body>
 </html>
