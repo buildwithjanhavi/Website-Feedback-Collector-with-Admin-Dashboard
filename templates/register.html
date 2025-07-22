@@ -1,51 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Register | Website Feedback Collector</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Register | Feedback Collector</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <div class="navbar">
-            <div class="logo">Feedback<span>Collector</span></div>
-            <div class="nav-links">
-                <a href="{{ url_for('index') }}">Home</a>
-                <a href="{{ url_for('login') }}">Login</a>
-            </div>
-        </div>
+  <div class="form-container">
+    <form method="POST" action="{{ url_for('register') }}">
+      <h2>📝 Create Your Account</h2>
 
-        <div class="hero-section">
-            <div class="hero-content">
-                <h1>Create an Account</h1>
-                <p>Register to submit feedback and help us improve!</p>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash">
+            {% for message in messages %}
+              {{ message }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
 
-                {% with messages = get_flashed_messages() %}
-                  {% if messages %}
-                    <ul>
-                      {% for message in messages %}
-                        <li style="color: #00bcd4;">{{ message }}</li>
-                      {% endfor %}
-                    </ul>
-                  {% endif %}
-                {% endwith %}
+      <input type="text" name="username" placeholder="Enter username" required minlength="3" maxlength="20">
+      <input type="password" name="password" placeholder="Enter password" required minlength="4" maxlength="20">
+      <input type="submit" value="Register">
+    </form>
 
-                <form action="{{ url_for('register') }}" method="POST" style="max-width: 400px; margin: auto; text-align: left;">
-                    <label for="username">Username</label><br>
-                    <input type="text" name="username" required><br><br>
-
-                    <label for="password">Password</label><br>
-                    <input type="password" name="password" required><br><br>
-
-                    <button class="btn btn-primary" type="submit">Register</button>
-                </form>
-
-                <p style="margin-top: 20px;">Already have an account? 
-                    <a href="{{ url_for('login') }}" style="color: #00bcd4;">Login</a>
-                </p>
-            </div>
-        </div>
-    </div>
+    <p class="center-text">Already have an account? <a href="{{ url_for('login') }}" style="color: #00f2fe;">Login</a></p>
+  </div>
 </body>
 </html>
