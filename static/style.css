@@ -1,229 +1,119 @@
-/* ========== Global Styles ========== */
+/* General Reset and Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-    color: white;
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(135deg, #0e0e0e, #1a1a1a);
+  color: #fff;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
-/* ========== Landing Page ========== */
-.landing-body {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-}
-
-@keyframes gradientShift {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
-}
-
-.hero-container {
-    padding: 2rem;
-    max-width: 800px;
-}
-
-.hero-title {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #00f2fe;
-    margin-bottom: 1rem;
-}
-
-.hero-subtitle {
-    font-size: 1.2rem;
-    color: #ddd;
-    margin-bottom: 2rem;
-}
-
-.hero-buttons a {
-    margin: 0 10px;
-    text-decoration: none;
-}
-
-/* ========== Buttons ========== */
-.btn {
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 8px;
-    transition: 0.3s ease-in-out;
-    cursor: pointer;
-}
-
-.btn-glow {
-    background: linear-gradient(to right, #00f2fe, #4facfe);
-    color: black;
-    box-shadow: 0 0 20px #00f2fe66;
-}
-
-.btn-glow:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 25px #00f2feaa;
-}
-
-.btn-outline {
-    border: 2px solid #00f2fe;
-    color: #00f2fe;
-    background: transparent;
-}
-
-.btn-outline:hover {
-    background: #00f2fe;
-    color: black;
-    transform: translateY(-3px);
-}
-
-/* ========== Form Styles ========== */
-.form-container {
-    max-width: 400px;
-    margin: 3rem auto;
-    background-color: #111;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-}
-
-form h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #00f2fe;
-}
-
-input[type="text"],
-input[type="password"],
-textarea,
-select {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 1rem;
-    border: none;
-    border-radius: 6px;
-    background-color: #1a1a1a;
-    color: white;
-}
-
-input[type="submit"],
-button {
-    background: linear-gradient(to right, #00f2fe, #4facfe);
-    color: black;
-    padding: 12px;
-    font-weight: bold;
-    border: none;
-    width: 100%;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-input[type="submit"]:hover {
-    background: #00c3ff;
-}
-
-.flash {
-    text-align: center;
-    color: #00ffcc;
-    margin-bottom: 1rem;
-}
-
-/* ========== Dashboard Styling ========== */
-.dashboard-container {
-    max-width: 90%;
-    margin: 4rem auto;
-    text-align: center;
-}
-
-.dashboard-heading {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #00f2fe;
-}
-
-.dashboard-subheading {
-    font-size: 1rem;
-    color: #ccc;
-}
-
-/* ========== Admin Feedback Table ========== */
-.table-container {
-    width: 95%;
-    margin: 3rem auto;
-    overflow-x: auto;
-}
-
-.feedback-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #111;
-    color: white;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.feedback-table th,
-.feedback-table td {
-    padding: 14px;
-    border-bottom: 1px solid #333;
-    text-align: left;
-}
-
-.feedback-table th {
-    background-color: #1f1f1f;
-    color: #00f2fe;
-}
-
-/* ========== Navbar ========== */
+/* Navbar */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    background-color: #000;
-    border-bottom: 1px solid #111;
+  width: 100%;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
+.brand {
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
-.logout-link {
-    color: #00f2fe;
-    font-weight: 500;
+.brand span {
+  background: linear-gradient(90deg, #00ffd5, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* ========== Footer ========== */
-.footer-note {
-    margin-top: auto;
-    padding: 1rem;
-    text-align: center;
-    font-size: 0.85rem;
-    color: #888;
+/* Nav Links */
+.nav-links .btn {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
-/* ========== Responsive ========== */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-
-    .hero-buttons a {
-        display: block;
-        margin: 10px auto;
-    }
-
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+.nav-links .btn:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
+/* Hero Section */
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  height: calc(100vh - 70px);
+  background: url('https://www.transparenttextures.com/patterns/black-linen.png');
+  background-size: cover;
+}
+
+.hero-content h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  max-width: 800px;
+  line-height: 1.2;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #00ffd5, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtext {
+  font-size: 1.2rem;
+  opacity: 0.85;
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+}
+
+/* CTA Button */
+.cta-btn {
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  background: linear-gradient(90deg, #00ffd5, #0072ff);
+  color: #000;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(0,255,213,0.4);
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,255,213,0.6);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .hero-content h2 {
+    font-size: 2rem;
+  }
+
+  .hero-subtext {
+    font-size: 1rem;
+  }
+
+  .nav-links .btn {
+    padding: 0.4rem 0.9rem;
+  }
+}
