@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Admin Dashboard | Feedback Collector</title>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard | Feedback Collector</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="dashboard-page">
 
   <nav class="navbar">
-    <div class="logo">Admin Dashboard</div>
-    <div><a href="{{ url_for('logout') }}" class="logout-link">Logout</a></div>
+    <h1 class="brand"><span>{{ session['username'] }}</span> | Admin Panel</h1>
+    <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
   </nav>
 
   <div class="dashboard-container">
-    <h1 class="dashboard-heading">📋 All Feedback Received</h1>
-    <p class="dashboard-subheading">Monitor and review user feedback effectively</p>
+    <h2 class="gradient-text">All Submitted Feedback</h2>
+    <p class="subtext">Review all feedback collected from users.</p>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-message">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
 
     {% if feedback %}
     <div class="table-container">
@@ -31,17 +42,17 @@
         <tbody>
           {% for entry in feedback %}
           <tr>
-            <td>{{ entry[1] }}</td>
-            <td>{{ entry[2] }}</td>
-            <td>{{ entry[3] }}</td>
-            <td>{{ entry[4] }}</td>
+            <td>{{ entry['username'] }}</td>
+            <td>{{ entry['feedback'] }}</td>
+            <td>{{ entry['rating'] }}</td>
+            <td>{{ entry['category'] }}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
     {% else %}
-      <p style="margin-top: 2rem; text-align: center;">No feedback submitted yet.</p>
+      <p style="text-align: center; margin-top: 2rem;">No feedback submitted yet.</p>
     {% endif %}
   </div>
 
