@@ -3,36 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <title>User Dashboard | Feedback Collector</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="dashboard-page">
 
   <nav class="navbar">
-    <div class="logo">Welcome, {{ session['username'] }}</div>
-    <div><a href="{{ url_for('logout') }}" class="logout-link">Logout</a></div>
+    <h1 class="brand"><span>{{ session['username'] }}</span> | Dashboard</h1>
+    <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
   </nav>
 
   <div class="dashboard-container">
-    <h1 class="dashboard-heading">Submit Your Feedback</h1>
-    <p class="dashboard-subheading">We value your thoughts and suggestions 💬</p>
+    <h2 class="gradient-text">Submit Your Feedback</h2>
+    <p class="subtext">Help us improve by sharing your experience.</p>
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}
-        <div class="flash">
+        <div class="flash-message">
           {% for message in messages %}
-            {{ message }}
+            <p>{{ message }}</p>
           {% endfor %}
         </div>
       {% endif %}
     {% endwith %}
 
-    <form method="POST" action="{{ url_for('dashboard') }}">
-      <textarea name="feedback" placeholder="Write your feedback here..." required minlength="5"></textarea>
+    <form method="POST" class="feedback-form">
+      <textarea name="feedback" placeholder="Your feedback..." required minlength="5"></textarea>
 
-      <label for="rating">Rate your experience:</label>
+      <label for="rating">Rating:</label>
       <select name="rating" required>
-        <option value="">Select rating</option>
+        <option value="">Select</option>
         <option value="1">1 - Poor</option>
         <option value="2">2 - Fair</option>
         <option value="3">3 - Good</option>
@@ -42,7 +43,7 @@
 
       <label for="category">Category:</label>
       <select name="category" required>
-        <option value="">Select category</option>
+        <option value="">Choose category</option>
         <option value="UI">UI</option>
         <option value="Performance">Performance</option>
         <option value="Bug">Bug</option>
@@ -50,7 +51,7 @@
         <option value="Other">Other</option>
       </select>
 
-      <input type="submit" value="Submit Feedback">
+      <button type="submit" class="cta-btn">Submit Feedback</button>
     </form>
   </div>
 
