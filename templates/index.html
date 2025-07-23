@@ -5,18 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Website Feedback Collector</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
 </head>
-<body class="landing-body">
+<body class="landing-page">
+
   <div class="hero-container">
-    <h1 class="hero-title">Website Feedback Collector</h1>
-    <p class="hero-subtitle">Empowering websites with meaningful insights 💡</p>
-    
-    <div class="hero-buttons">
-      <a href="{{ url_for('login') }}" class="btn btn-glow">🔐 Login</a>
-      <a href="{{ url_for('register') }}" class="btn btn-outline">📝 Register</a>
+    <div class="navbar">
+      <h1 class="brand"><span>Feedback</span>Collector</h1>
+      <div class="nav-links">
+        <a href="{{ url_for('login') }}" class="btn glass-btn">Login</a>
+        <a href="{{ url_for('register') }}" class="btn glass-btn">Register</a>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <h2 class="gradient-text">Gather Real Insights from Users</h2>
+      <p class="hero-subtext">Empowering product decisions through user feedback — secure, intuitive, and fast.</p>
+      <a href="{{ url_for('register') }}" class="cta-btn">Get Started</a>
     </div>
   </div>
 
-  <footer class="footer-note">© 2025 Website Feedback Collector • Built with 💙 by Janhavi</footer>
 </body>
 </html>
